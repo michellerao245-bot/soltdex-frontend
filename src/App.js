@@ -70,6 +70,7 @@ function App() {
               {/* ✅ Naye Audit & Analysis Routes */}
               <Route path="/scam-detection" element={<ScamDetection />} />
               <Route path="/whale-tracking" element={<WhaleTracking />} />
+              <Route path="/token-analytics" element={<WhaleTracking />} />
               <Route path="/sniping-signals" element={<SnipingSignals />} />
               <Route path="/markets" element={<MarketsPage />} />
 
