@@ -24,7 +24,7 @@ import ScamDetection from './pages/ScamDetection';
 import WhaleTracking from './pages/WhaleTracking'; 
 import SnipingSignals from './pages/SnipingSignals'; 
 import MarketsPage from './pages/MarketsPage'; 
- import Presale from './pages/Presale';       
+import Presale from './pages/Presale';       
 import './App.css';        
        
 function App() {        
