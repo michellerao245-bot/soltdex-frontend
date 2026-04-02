@@ -24,7 +24,7 @@ import ScamDetection from './pages/ScamDetection';
 import WhaleTracking from './pages/WhaleTracking'; 
 import SnipingSignals from './pages/SnipingSignals'; 
 import MarketsPage from './pages/MarketsPage'; 
-       
+ import Presale from './pages/Presale';       
 import './App.css';        
        
 function App() {        
@@ -73,7 +73,7 @@ function App() {
               <Route path="/token-analytics" element={<WhaleTracking />} />
               <Route path="/sniping-signals" element={<SnipingSignals />} />
               <Route path="/markets" element={<MarketsPage />} />
-
+              <Route path="/presale" element={<Presale />} />
               {/* Soltswap Route */} 
               <Route path="/soltswap" element={<Soltswap />} />  
   
