@@ -1,12 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-// 1. MarketNav ko import kiya
-import MarketNav from './MarketNav'; 
 
 const Home = () => {
   const navigate = useNavigate();
 
-  // Stats Data
+  // Token Stats Data
   const tokenStats = [
     { label: "Token Name", value: "SOLTCOIN", color: "#f59e0b" },
     { label: "Token Symbol", value: "$SOLT", color: "#3b82f6" },
@@ -14,6 +12,7 @@ const Home = () => {
     { label: "Network", value: "BSC (BEP-20)", color: "#8b5cf6" }
   ];
 
+  // Analytics Platforms Data
   const analyticsPlatforms = [
     {
       name: "DexScreener",
@@ -37,6 +36,7 @@ const Home = () => {
           A decentralized BEP-20 token on BSC with a fixed total supply of 50,000,000 SOLTCOIN, built for transparency, security, and long-term value.
         </p>
         
+        {/* Placeholder for Token Emblem */}
         <div className="token-emblem" style={{ height: '100px' }}></div>
 
         <button className="buy-token-btn">
@@ -45,10 +45,6 @@ const Home = () => {
 
         <p className="protocol-subtitle">Leading Decentralized Launchpad and Token Services Protocol</p>
       </div>
-
-      {/* ✅ 2. YAHAN DALO: MarketNav (Markets, Analytics, Guardian, Signals) */}
-      {/* Ye Hero Section ke theek niche sabse best lagega */}
-      <MarketNav />
 
       {/* --- TOKEN STATS GRID --- */}
       <div className="stats-container">
