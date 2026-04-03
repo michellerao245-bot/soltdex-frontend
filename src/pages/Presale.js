@@ -1,75 +1,111 @@
-import React, { useState } from 'react';
-import { ethers } from 'ethers';
+import React, { useState } from "react";
+import { useWeb3ModalAccount, useWeb3ModalProvider } from '@web3modal/ethers/react'
+import { ethers } from 'ethers'
 
 const Presale = () => {
   const [amount, setAmount] = useState("");
   const [status, setStatus] = useState("");
+  const { isConnected } = useWeb3ModalAccount() 
+  const { walletProvider } = useWeb3ModalProvider()
+
   const contractAddress = "0x186eb36aD051f6EB72cb43bd2b0ce621F93a374d";
 
   const handleBuy = async () => {
+    if (!isConnected) {
+      setStatus("❌ Please connect wallet from the top right button!");
+      return;
+    }
+    if (!amount || isNaN(amount)) {
+      setStatus("❌ Please enter a valid BNB amount!");
+      return;
+    }
+
     try {
       setStatus("Processing...");
-      if (!window.ethereum) throw new Error("MetaMask not found!");
-
-      // ✅ ethers v6 syntax (BrowserProvider)
-      const provider = new ethers.BrowserProvider(window.ethereum);
-      const signer = await provider.getSigner();
-
-      // Simple ABI for the function
+      const ethersProvider = new ethers.BrowserProvider(walletProvider)
+      const signer = await ethersProvider.getSigner()
       const abi = ["function buyTokens() payable"];
       const contract = new ethers.Contract(contractAddress, abi, signer);
 
-      // ✅ ethers v6 syntax (parseEther directly under ethers)
       const tx = await contract.buyTokens({
-        value: ethers.parseEther(amount)
+        value: ethers.parseEther(amount.toString())
       });
 
-      setStatus("Transaction Sent! Waiting for confirmation...");
+      setStatus("Transaction Sent! Waiting...");
       await tx.wait();
-      setStatus("Success! Tokens Bought.");
-      alert("Tokens successfully purchased!");
+      setStatus("✅ Success! Tokens Bought.");
+      setAmount("");
     } catch (err) {
-      console.error("Presale Error:", err);
-      setStatus("Error: " + err.message);
-      alert("Error: " + err.message);
+      console.error(err);
+      // Agar balance $1.50 se kam hua toh yahan error show hoga
+      setStatus("❌ Error: Check balance or gas fees.");
     }
   };
 
   return (
     <div style={{ 
-      padding: '100px 20px', 
-      textAlign: 'center', 
-      color: 'white', 
-      minHeight: '80vh' 
+      padding: "100px 20px", 
+      textAlign: "center", 
+      color: "white", 
+      backgroundColor: "transparent" // Background app handle karega
     }}>
-      <h2 style={{ color: '#f59e0b' }}>SOLT PUBLIC SALE</h2>
-      <p style={{ marginBottom: '20px' }}>Enter BNB amount to buy SOLT</p>
       
-      <input
-        type="number"
-        placeholder="Amount in BNB"
-        value={amount}
-        onChange={(e) => setAmount(e.target.value)}
-        style={{ padding: '10px', borderRadius: '5px', border: 'none', width: '250px' }}
-      />
+      {/* 1. SECTION HEADERS */}
+      <h2 style={{ color: "#f59e0b", fontSize: "28px", fontWeight: "bold", marginBottom: "10px" }}>
+        SOLT PUBLIC SALE
+      </h2>
+      <p style={{ color: "#cbd5e1", fontSize: "16px", marginBottom: "40px" }}>
+        Enter BNB amount to buy SOLT
+      </p>
       
-      <button 
-        onClick={handleBuy}
-        style={{ 
-          marginLeft: '10px', 
-          padding: '10px 25px', 
-          background: '#f59e0b', 
-          color: 'white', 
-          border: 'none', 
-          borderRadius: '5px',
-          cursor: 'pointer',
-          fontWeight: 'bold'
-        }}
-      >
-        BUY NOW
-      </button>
+      {/* 2. INPUT & BUY BUTTON ONLY */}
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
+        <input
+          type="number"
+          step="any"
+          placeholder="0.00"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+          style={{
+            padding: "14px",
+            borderRadius: "8px",
+            backgroundColor: "#1a2234",
+            color: "white",
+            border: "1px solid #f59e0b",
+            width: "220px",
+            fontSize: "18px",
+            outline: "none"
+          }}
+        />
 
-      {status && <p style={{ marginTop: '20px', color: '#f59e0b' }}>{status}</p>}
+        <button 
+          onClick={handleBuy} 
+          style={{ 
+            padding: "14px 30px", 
+            background: "#f59e0b", 
+            borderRadius: "8px", 
+            fontWeight: "bold", 
+            border: "none", 
+            cursor: "pointer",
+            color: "#000",
+            fontSize: "16px"
+          }}
+        >
+          BUY NOW
+        </button>
+      </div>
+
+      {/* 3. CLEAN STATUS MESSAGE */}
+      {status && (
+        <p style={{ 
+          marginTop: "25px", 
+          color: status.includes("❌") ? "#ff4444" : "#f59e0b",
+          fontSize: "14px",
+          fontWeight: "500"
+        }}>
+          {status}
+        </p>
+      )}
     </div>
   );
 };
