@@ -1,10 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+// 1. MarketNav ko import kiya
+import MarketNav from './MarketNav'; 
 
 const Home = () => {
   const navigate = useNavigate();
 
-  // 1. Updated Stats: Sirf 4 main boxes (Image_11.png ke mutabiq)
+  // Stats Data
   const tokenStats = [
     { label: "Token Name", value: "SOLTCOIN", color: "#f59e0b" },
     { label: "Token Symbol", value: "$SOLT", color: "#3b82f6" },
@@ -28,14 +30,13 @@ const Home = () => {
   return (
     <div className="home-dashboard">
       
-      {/* --- HERO SECTION (Image_8.jpg) --- */}
+      {/* --- HERO SECTION --- */}
       <div className="hero-token-section">
         <h1>SOLTCOIN – A Secure & Community-Driven crypto Asset</h1>
         <p className="hero-subtext">
           A decentralized BEP-20 token on BSC with a fixed total supply of 50,000,000 SOLTCOIN, built for transparency, security, and long-term value.
         </p>
         
-        {/* Logo ka space khaali chhod diya hai (Abhi matter par focus hai) */}
         <div className="token-emblem" style={{ height: '100px' }}></div>
 
         <button className="buy-token-btn">
@@ -45,7 +46,11 @@ const Home = () => {
         <p className="protocol-subtitle">Leading Decentralized Launchpad and Token Services Protocol</p>
       </div>
 
-      {/* --- TOKEN STATS GRID (Image_11.png) --- */}
+      {/* ✅ 2. YAHAN DALO: MarketNav (Markets, Analytics, Guardian, Signals) */}
+      {/* Ye Hero Section ke theek niche sabse best lagega */}
+      <MarketNav />
+
+      {/* --- TOKEN STATS GRID --- */}
       <div className="stats-container">
         {tokenStats.map((stat, index) => (
           <div key={index} className="stat-card">
@@ -55,7 +60,7 @@ const Home = () => {
         ))}
       </div>
 
-      {/* --- NEW MATTER SECTION (Image_10.png) --- */}
+      {/* --- NEW MATTER SECTION --- */}
       <div className="hero-cta-paragraph">
         <h1>All the DAPPs you Need to <span style={{ color: '#3b82f6' }}>Launch</span> a Successful Project</h1>
         <p>
@@ -63,7 +68,7 @@ const Home = () => {
         </p>
       </div>
 
-      {/* --- ANALYTICS HUB (Image_9.jpg) --- */}
+      {/* --- ANALYTICS HUB --- */}
       <div className="analytics-section">
         <div className="analytics-grid">
           {analyticsPlatforms.map((platform, index) => (
