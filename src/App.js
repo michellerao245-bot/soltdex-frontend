@@ -57,7 +57,7 @@ function App() {
             </div>      
           </header>           
            
-          <div className="content-wrapper" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>  
+          <div className="content-wrapper" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
               
             <div className="main-content" style={{ flex: 1, padding: '20px' }}>           
               <Routes>           
