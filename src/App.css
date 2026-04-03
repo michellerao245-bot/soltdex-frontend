@@ -271,3 +271,15 @@ body {
   .footer-content { text-align: center; }
   .nav-container { padding: 10px 15px; }
 }
+
+/* --- Content & Footer Layout Fix --- */
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+}
