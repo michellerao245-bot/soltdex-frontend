@@ -1,7 +1,9 @@
 import React from 'react';
 
 const SoltcoinSwap = () => {
+  // eslint-disable-next-line no-unused-vars
   const SOLTCOIN_ADDRESS = "0x1b1E802A07105251D8e273835C06a4C85eaF6abb";
+  // eslint-disable-next-line no-unused-vars
   // BNB ka official wrapper address (WBNB) pair banane ke liye
   const BNB_ADDRESS = "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c";
 
