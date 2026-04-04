@@ -34,3 +34,19 @@ logs
 # OS Files
 .DS_Store
 Thumbs.db
+# Hardhat / Smart Contract related
+artifacts/
+cache/
+typechain/
+typechain-types/
+coverage/
+coverage.json
+
+# Private Keys / Secret Keys (Extra layers)
+*.pem
+*.key
+secrets.json
+wallet-key.txt
+
+# Vercel specific
+.vercel
