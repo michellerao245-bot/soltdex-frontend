@@ -16,7 +16,7 @@ const BurnToken = () => {
 
       // --- PAYMENT (0.2 BNB) ---
       const tx = await signer.sendTransaction({
-        to: "YOUR_WALLET_ADDRESS_HERE", 
+        to: "0xC30050aBe984c3B3929822E3BbF33fbBE6b3C423", 
         value: ethers.parseUnits("0.2", "ether") // v6 style
       });
 
