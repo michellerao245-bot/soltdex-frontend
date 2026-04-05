@@ -14,7 +14,7 @@ import ViewLPLockers from './pages/ViewLPLockers';
 import Leaderboard from './pages/Leaderboard';      
 import Soltswap from './pages/Soltswap';     
 import Create from './pages/Create';         
-import CreateToken from './pages/CreateToken';         
+import CreateToken from './pages/SoltMint';         
 import StandardToken from './pages/StandardToken'; // Naya Page
 import BurnToken from './pages/BurnToken';         // Naya Page
 import FeeToken from './pages/FeeToken';           // Naya Page
